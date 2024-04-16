@@ -2,23 +2,26 @@ import smtplib
 import requests
 from twilio.rest import Client
 
+MY_EMAIL = ""
+MY_EMAIL_PASSWORD = ""
+PHONE_NUM = ""
 
 class NotificationManager:
     """This class is responsible for sending notifications with the deal flight details."""
     def __init__(self):
-        self.account_sid = 'AC4b5877a2ed5b127afe734f030582fe34'
-        self.auth_token = 'd7bdee3c54e82f59a8dab755215142ca'
+        self.account_sid = os.environ['Twilio Account Sid']
+        self.auth_token = os.environ['Twilio Auth Token']
         self.client = Client(self.account_sid, self.auth_token)
-        self.gsheet_api = "https://api.sheety.co/46eaace6c0923e882fbe2f5e8f3bf9bc/flightDeals/users"
+        self.gsheet_api = os.environ['Google Sheet API']
         self.gsheet_data = requests.get(self.gsheet_api).json()
-        self.my_email = "gtbio.albee1@gmail.com"
-        self.password = "pugq vuwh sbnv qbie"
+        self.my_email = MY_EMAIL
+        self.password = MY_EMAIL_PASSWORD
 
     def send_msg(self, msg_body):
         message = self.client.messages.create(
-          from_='+15167569013',
+          from_='', #Virtuo Phone Number generated from Twilio
           body=msg_body,
-          to='+886905060485'
+          to=PHONE_NUM
         )
         print(message.sid)
 
