@@ -1,11 +1,15 @@
 import requests
 
+### Create a google sheet named "Flight Deals", which contains two tab: prices and users ###
+### Get API for both tabs on Sheety ###
+PRICE_API = ""
+USER_API = ""
 
 class DataManager:
     """This class is responsible for talking to the Google Sheet."""
     def __init__(self):
-        self.price_api = "https://api.sheety.co/46eaace6c0923e882fbe2f5e8f3bf9bc/flightDeals/prices"
-        self.user_api = "https://api.sheety.co/46eaace6c0923e882fbe2f5e8f3bf9bc/flightDeals/users"
+        self.price_api = PRICE_API
+        self.user_api = USER_API
         self.price_gsheet_data = requests.get(self.price_api).json()
         self.user_gsheet_data = requests.get(self.user_api).json()
 
