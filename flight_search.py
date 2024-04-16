@@ -4,14 +4,14 @@ from pprint import pprint
 
 FROM_DATE = (datetime.today() + timedelta(days=7)).strftime("%d/%m/%Y")
 TO_DATE = (datetime.today() + timedelta(days=14)).strftime("%d/%m/%Y")
-
+TEQUILA_API = ""
 
 class FlightSearch:
     """This class is responsible for talking to the Flight Search API."""
 
     def __init__(self, location):
         self.location = location
-        self.apikey = {"apikey": "NlN_vm5LU1YwKRfwhLq_45D4cWg9sLZe"}
+        self.apikey = {"apikey": TEQUILA_API}
         self.locationEndpoint = "https://api.tequila.kiwi.com/locations/query"
         self.searchEndpoint = "https://api.tequila.kiwi.com/v2/search"
         self.locationParameter = None
